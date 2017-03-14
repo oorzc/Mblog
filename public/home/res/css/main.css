@@ -1,0 +1,71 @@
+.fly-list .fly-list-li{
+    padding: 50px 10px;
+}
+.fly-list-li {
+    margin-bottom: 10px;
+    box-shadow: 1px 2px 3px #ccc;
+    border: 1px solid #ccc;
+    position: relative;
+}
+.fly-list-li img{
+    margin: 40px 0 0 20px;
+    float: left;
+}
+.fly-list-li1 p span {
+    padding-right: 5px;
+}
+@media screen and (max-width: 750px){}
+.fly-list-li h2 a {
+    max-width: 83%;
+}
+.fly-list-li h2{
+    position: absolute;
+    top: 10px;
+    left: 25px;
+}
+.fly-list-li p{
+    float: left;
+    margin-left: 80px;
+}
+
+.fly-h{
+    color: #ccc;
+    display: block;
+    position: absolute;
+    top: 70px;
+    right: 25px;
+}
+.denglu{
+    margin: 60px 12px 60px 12px;
+    padding: 52px 47px 10px 10px;
+    border: 1px solid #ccc;
+    box-shadow: 1px 1px 2px #ccc;
+}
+
+@media screen and (max-width: 750px) {
+    .nav,
+    .fly-tab1,
+    .fly-list-hint{display:block; }
+}
+.user-tab span a {
+    padding: 0 30px;
+}
+.avatar-add p {
+    position: absolute;
+    top: 70px;
+    width: 82%;
+    margin-top: 10px;
+    font-size: 12px;
+    text-align: center;
+    color: #999;
+    margin-left: 28px;
+}
+.avatar-add {
+    position: relative;
+    width: 297px;
+    height: 373px;
+    background-color: #F2F2F5;
+}
+.fly-ad:before {
+    content: '评论区';
+}

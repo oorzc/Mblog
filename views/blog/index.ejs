@@ -1,0 +1,99 @@
+<%- include include_header %>
+<div class="main layui-clear">
+    <div class="wrap">
+        <div class="content" style="margin-right:0">
+            <div class="main layui-clear">
+                <div class="wrap">
+                    <div class="content">
+                        <div class="fly-tab">                         
+                          <form action="" class="fly-search">
+                            <i class="iconfont icon-sousuo"></i>
+                            <input class="layui-input" autocomplete="off" placeholder="搜索内容，回车跳转" type="text"
+                            name="q">
+                        </form>
+                        <% if(!username){ %>
+                        <a href="/login" class="layui-btn jie-add">发帖</a>
+                        <% }else{ %>
+                        <a href="/add" class="layui-btn jie-add">发帖</a>
+                        <% } %>
+                    </div>
+
+                    <ul class="fly-list">
+                        <% for(var i = 0 ; i < articles.length ; i++){ %>
+                        <li class="fly-list-li fly-list-li1">
+                            <a href="/home?id=<%= articles[i].author.id %>" class="fly-list-avatar">
+                                <img src="/avatar/<%= articles[i].author.avatar %>" alt="">
+                            </a>
+                            <h2 class="fly-tip">
+                                <a href="/article?id=<%= articles[i].id %>"> <%- articles[i].title %> </a>
+                            </h2>
+                            <p>
+                                <span class="fly-s"><a
+                                    href="javascript:volid(0);"><%- articles[i].author.name %></a></span>
+                                    <span class="fly-s"><%= moment(articles[i].create).format('YYYY-MM-DD HH:mm') %></span>
+                                </p>
+                                <span class="fly-list-hint fly-h">
+                                  <i class="iconfont" title="回答">&#xe60c;</i>&nbsp;<%= articles[i].comments %>
+                                  <i class="iconfont" title="人气">&#xe60b;</i>&nbsp;<%= articles[i].visit %>
+                              </span>
+                          </li>
+                          <% } %>
+                      </ul>
+
+                      <div style="text-align: center">
+                        <div class="laypage-main clearfix">
+                            <% if (pageCount > 1) { %>
+                            <a class="laypage-first" href="/?page=1">&lt;&lt;</a>
+                            <% if (pageNum > 1) { %>
+                            <a class="laypage-prev" href="/?page=<%- pageNum - 1 %>">上一页</a>
+                            <% } %>
+                            <% if (pageNum < pageCount) { %>
+                            <a class="laypage-nest" href="/?page=<%- pageNum + 1 %>">下一页</a>
+                            <% } %>
+                            <a class="laypage-last" href="/?page=<%- pageCount %>">&gt;&gt;</a>
+                            <% } %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="edge">
+                <h3 class="page-title" style="color: #5FB676">活跃用户</h3>
+                <div class="user-looklog leifeng-rank">
+                  <span>
+                      <% for(var i = 0 ; i < users.length ; i++){ %>
+                      <a href="/home?id=<%= users[i].id %>">
+                          <img src="/avatar/<%- users[i].avatar %>" alt="<%- users[i].name %>">
+                          <cite><%- users[i].name %></cite>
+                          <i><%- users[i].comments %>次回答</i>
+                      </a>
+                      <% } %>
+                  </span>
+              </div>
+
+              <h3 class="page-title" style="color: #5FB676">热门文章</h3>
+              <ol class="fly-list-one">
+                <% for(var i = 0 ; i < remen.length ; i++){ %>
+                <li>
+                    <a href="/article?id=<%- remen[i].id %>"><%- remen[i].title %></a>
+                    <span class="pop"><i class="iconfont">&#xe60c;</i> <%- remen[i].comments %></span>
+                </li>
+                <% } %>
+            </ol>
+            <h3 class="page-title" style="color: #5FB676">最受好评</h3>
+            <ol class="fly-list-one">
+                <% for(var i = 0 ; i < zan.length ; i++){ %>
+                <li>
+                    <a href="/home?id=<%= zan[i].id %>" id="comment"><%- zan[i].name %></a>
+                    <span class="pop"><i class="iconfont icon-zan"></i> <%- zan[i].zan %></span>
+                </li>
+                <% } %>
+            </ol>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+</div>
+<%- include include_footer %>
+</body>
+</html>

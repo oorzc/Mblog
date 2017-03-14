@@ -1,0 +1,88 @@
+<%- include include_header%>
+
+<div class="main layui-clear">
+  <h2 class="page-title">添加文章</h2>
+        <div class="layui-form layui-form-pane">
+            <form method="post">
+
+            <div class="layui-form-item">
+                <label for="title" class="layui-form-label">标题</label>
+                <div class="layui-input-block">
+                    <input type="text" id="title" name="title" required lay-verify="required" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+
+
+                <div class="layui-form-item">
+                    <label for="tag" class="layui-form-label">标签</label>
+                       <div class="layui-input-block">
+                           <input class="tag" type="radio" name="tag" value="原创" title="原创" checked>
+                           <input class="tag" type="radio" name="tag" value="转载" title="转载">
+                       </div>
+                </div>
+
+
+                <div class="layui-form-item layui-form-text">
+                <div class="layui-input-block">
+                    <textarea id="edit" name="content" required lay-verify="required" placeholder="请输入内容" class="layui-textarea fly-editor" style="height: 260px;"></textarea>
+                </div>
+                </div>
+
+            <div class="layui-form-item">
+                <button id="fabu" type="submit" class="layui-btn" lay-filter="*" lay-submit>立即发布</button>
+            </div>
+            </form>
+        </div>
+    </div>
+
+
+<%- include include_footer%>
+
+<script>
+    layui.use(['layer','layedit','form'], function() {
+        var layer = layui.layer,
+                $ = layui.jquery,
+                layedit = layui.layedit,
+                form = layui.form();
+
+
+        var layeditIndex = layedit.build('edit',{
+            height: 200,
+            tool: ['strong','italic','underline','del','link','face','left','center','right']
+        });
+
+        //点击发布
+        $('#fabu').on('click', function() {
+            layedit.sync(layeditIndex);
+
+            var title=$("#title").val();
+            var tag=  $("input[type='radio']:checked").val();
+            var content = layedit.getContent(layeditIndex);// 获取Html 内容
+
+            if(title==""){
+                layer.alert('输入文章标题', {icon: 2});
+                return false;
+            }
+            if(content==""){
+                layer.alert('输入文章内容', {icon: 2});
+                return false;
+            }
+
+            $.post("/add",{title:title,tag:tag,content:content},function(result){
+                    if(result.status==="-1"){
+                        layer.alert('发布失败', {icon: 2});
+                    }else if(result.status==="-2"){
+                        layer.alert('文章标题长度为5-30', {icon: 2});
+                    }else if(result.status==="-3"){
+                        layer.alert('文章内容长度为10-8000', {icon: 2});
+                    }else{
+                        layer.alert('发布成功');
+                        //jquery实现页面跳转
+                        location.href ="/"
+                    }
+                });  return false;     //这句话的意思不会刷新当前页面。避免清空内容
+    });
+});
+</script>
+</body>
+</html>

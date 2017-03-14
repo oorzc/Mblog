@@ -1,0 +1,195 @@
+<%- include include_header %>
+
+<div class="main layui-clear">
+    <div class="wrap">
+        <div class="">
+            <h1><%- article.title %></h1>
+            <div class="fly-tip fly-detail-hint" data-id="{{rows.id}}">
+                <span>标签  </span><span class="fly-tip-jing"><%= article.tag %></span>
+                <div class="fly-list-hint">
+                    <i class="iconfont" title="回答">&#xe60c;</i><%= article.comments %>
+                    <i class="iconfont" title="人气">&#xe60b;</i><%= article.visit %>
+                </div>
+            </div>
+            <div class="detail-about">
+                <a class="jie-user" href="/home?id=<%= article.author.id %>">
+                    <img src="/avatar/<%- article.author.avatar %>" alt="">
+                    <cite>
+                        <em><%- article.author.name %></em>
+                    </cite>
+                </a>
+                <div class="detail-hits" data-id="{{rows.id}}">
+                    <span style="color:#FF7200"><%= moment(article.create).format('YYYY-MM-DD HH:mm') %></span>
+                    <% if(username == article.author.username) { %>
+                    <button class="layui-btn layui-btn-mini" id="del">删除此贴</button>
+                    <% } %>
+                </div>
+            </div>
+
+            <div class="detail-body photos" style="margin-bottom: 20px;">
+                <%- article.content %>
+            </div>
+
+            <a name="comment" href="javascript:volid(0);"></a>
+            <h2 class="page-title">热忱回答</h2>
+            <% for(var i = 0 ; i < comments.length ; i++){ %>
+            <ul class="jieda photos" id="jieda">
+                <li data-id="12" class="jieda-daan">
+                    <a name="item-121212121212" href="javascript:volid(0);"></a>
+                    <div class="detail-about detail-about-reply">
+                        <a class="jie-user" href="/home?id=<%= comments[i].user.id %>">
+                            <img src="/avatar/<%- comments[i].user.avatar %>" alt="">
+                            <cite>
+                                <i> <%- comments[i].user.name %></i>
+                            </cite>
+                        </a>
+                        <div class="detail-hits">
+                            <span><%= moment(comments[i].create).format('YYYY-MM-DD HH:mm') %></span>
+                        </div>
+                    </div>
+                    <div class="detail-body jieda-body">
+                        <p><%- comments[i].content %></p>
+                    </div>
+                    <div class="jieda-reply">
+                        <div class="jieda-admin">
+                             <span class="jieda-zan zan" type="zan" data-id="<%= comments[i].id %>"><i class="iconfont icon-zan"></i><%= comments[i].like %></span>
+                     <span class="jieda-zan cai" type="cai" data-id="<%= comments[i].id %>"><%= comments[i].dislike %></span>
+                    
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <% } %>
+
+            <div style="text-align: center">
+                <div class="laypage-main  clearfix">
+                    <% if (pageCount > 1) { %>
+                    <a class="laypage-first" href="/article/?id=<%= article.id %>&page=1">&lt;&lt;</a>
+                    <% if (pageNum > 1) { %>
+                    <a class="laypage-prev" href="/article/?id=<%= article.id %>&page=<%= pageNum - 1 %>">上一页</a>
+                    <% } %>
+                    <% if (pageNum < pageCount) { %>
+                    <a class="laypage-next" href="/article/?id=<%= article.id %>&page=<%- pageNum + 1 %>">下一页</a>
+                    <% } %>
+                    <a class="laypage-last" href="/article/?id=<%= article.id %>&page=<%- pageCount %>">&gt;&gt;</a>
+                    <% } %>
+                </div>
+            </div>
+
+            <div class="layui-form layui-form-pane">
+                <form method="post">
+                    <div class="layui-form-item layui-form-text">
+                        <div class="layui-input-block">
+                            <textarea id="content" name="content" placeholder="我要回答'" class="layui-textarea fly-editor"
+                                      style="height: 150px;"></textarea>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <% if(!username){ %>
+                        <a class="layui-btn" href="/login">登陆后留言</a>
+                        <% }else{ %>
+                        <button id="comment" class="layui-btn" lay-filter="*" lay-submit>提交回答</button>
+                        <% } %>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<%- include include_footer %>
+
+<script>
+    layui.use(['layer', 'form', 'layedit'], function () {
+        var layer = layui.layer,
+                $ = layui.jquery,
+                layedit = layui.layedit,
+                form = layui.form();
+
+        var layeditIndex = layedit.build('content', {
+            height: 200,
+            tool: ['strong', 'italic', 'underline', 'del', 'link', 'face', 'left', 'center', 'right']
+        });
+
+        //点击添加评论
+        $('#comment').on('click', function () {
+            layedit.sync(layeditIndex);
+            var id = '<%- article.id %>';
+            var content = layedit.getContent(layeditIndex);// 获取Html 内容
+
+            if (content == "") {
+                layer.alert('输入评论内容', {icon: 2});
+                return false;
+            }
+
+            $.post("/comment", {articleId: id, content: content}, function (result) {
+                if (result.status === "-1") {
+                    layer.alert('发布失败', {icon: 2});
+                } else if (result.status === "-2") {
+                    layer.alert('留言长度为5-3000', {icon: 2});
+                } else {
+                    // layer.alert('发布成功');
+                    //jquery实现页面跳转
+                    location.href = "/article/?id=<%- article.id %>";
+                }
+            });
+            return false;     //这句话的意思不会刷新当前页面。避免清空内容
+        });
+
+        //删除文章
+        $('#del').on('click', function () {
+            var id = '<%- article.id %>';
+            layer.confirm('确认要删除吗？', {
+                icon: 0,
+                title: '警告',
+                shade: false
+            }, function () {
+                $.post("/del", {id: id}, function (result) {
+                    if (result.status === "-1") {
+                        layer.alert('系统错误', {icon: 2});
+                    } else {
+                        location.href = "/";
+                    }
+                    ;
+                });
+            });
+        });
+
+        //点赞
+        $('.zan').one('click', function () {
+            var id = this.getAttribute('data-id');          
+            var obj = $(this);         
+            $.post("/like", {id: id}, function (result) {
+                if (result.status === "-1") {
+                    layer.alert('系统错误', {icon: 2});
+                } else {                   
+                    var n = obj.text();
+                    n++;
+                    obj.html('<i class="iconfont icon-zan" style="color:#C00">' + '</i>'+'<a href="javascript:;" style="color:#C00">'+ n+'</a>');
+                }
+            });
+            return false;
+        });
+
+        //点踩
+        $('.cai').one('click', function () {
+            var id = this.getAttribute('data-id');              
+            var obj = $(this);
+            $.post("/dislike", {id: id}, function (result) {
+                if (result.status === "-1") {
+                    layer.alert('系统错误', {icon: 2});
+                } else {
+                    var n = obj.text();
+                    n++;
+                    obj.addClass('cai_v').html('<a href="javascript:;" style="color:#C00">'+ n+'</a>');
+                }
+            });
+            return false;
+        });
+    });
+</script>
+
+
+</body>
+</html>

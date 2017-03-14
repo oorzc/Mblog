@@ -1,0 +1,235 @@
+<%- include include_header %>
+
+<div class="main layui-clear" style="min-height: 600px;">
+    <h2 class="page-title">帐号设置</h2>
+
+    <div class="fly-tab fly-tab1 user-tab">
+        <span id="LAY-mine">
+          <a href="javascript:;" class="tab-this" hash="info">我的资料</a>
+          <a href="javascript:;" hash="avatar">头像</a>
+          <a href="javascript:;" hash="pass">密码</a>
+      </span>
+    </div>
+
+    <div class="user-mine">
+        <form class="layui-form layui-form-pane mine-view" style="display:block;" method="post">
+            <div class="layui-form-item">
+                <label for="email" class="layui-form-label">邮箱</label>
+                <div class="layui-input-inline">
+                    <input type="text" id="email" name="email" required lay-verify="email" autocomplete="off"
+                           value="<%= user.email %>" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label for="qq" class="layui-form-label">QQ</label>
+                <div class="layui-input-inline">
+                    <input type="text" id="qq" name="qq" required lay-verify="qq" autocomplete="off"
+                           value="<%= user.qq %>" class="layui-input">
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label for="name" class="layui-form-label">昵称</label>
+                <div class="layui-input-inline">
+                    <input type="text" id="name" name="name" required lay-verify="required" autocomplete="off"
+                           value="<%= user.name %>" class="layui-input">
+                </div>
+                <div class="layui-inline">
+                    <div class="layui-input-inline">
+                        <input type="radio" class="sex" name="sex" value="nan" checked title="男">
+                        <input type="radio" class="sex" name="sex" value="nv" title="女">
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label for="city" class="layui-form-label">城市</label>
+                <div class="layui-input-inline">
+                    <input type="text" id="city" name="city" autocomplete="off" value="<%= user.city %>"
+                           class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item layui-form-text">
+                <label for="motto" class="layui-form-label">签名</label>
+                <div class="layui-input-block">
+                <textarea placeholder="随便写些什么刷下存在感" id="motto" name="motto" autocomplete="off"
+                          class="layui-textarea" style="height: 80px;"><%= user.motto %></textarea>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <a id="set" class="layui-btn" key="set-mine" lay-filter="*" lay-submit>确认修改</a>
+            </div>
+        </form>
+
+        <div class="layui-form layui-form-pane mine-view">
+            <form action="/up" method="post" enctype="multipart/form-data">
+                <div class="layui-input-inline">
+                    <input type="file" id="touxiang" name="touxiang">
+                </div>
+                <div>
+                    <br>
+                    <button type="submit" id="photo" class="layui-btn">上传头像</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="layui-form layui-form-pane mine-view">
+            <form action="/set" method="post">
+                <div class="layui-form-item">
+                    <label for="L_nowpass" class="layui-form-label">当前密码</label>
+                    <div class="layui-input-inline">
+                        <input type="password" id="L_nowpass" name="nowpass" required lay-verify="required"
+                               autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label for="L_pass" class="layui-form-label">新密码</label>
+                    <div class="layui-input-inline">
+                        <input type="password" id="L_pass" name="pass" required lay-verify="required" autocomplete="off"
+                               class="layui-input">
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">密码6-20位，只能包含字母数字下划线</div>
+                </div>
+                <div class="layui-form-item">
+                    <label for="L_repass" class="layui-form-label">确认密码</label>
+                    <div class="layui-input-inline">
+                        <input type="password" id="L_repass" name="repass" required lay-verify="required"
+                               autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <button id="change" class="layui-btn" key="set-mine" lay-filter="*" lay-submit>确认修改</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<%- include include_footer %>
+
+<script>
+    layui.use(['layer'], function () {
+        var layer = layui.layer,
+                $ = layui.jquery;
+
+        //获取input图片宽高和大小
+        function getImage(id, callback) {
+            var _URL = window.URL || window.webkitURL;
+            $("#" + id).change(function (e) {
+                var file, img;
+                if ((file = this.files[0])) {
+                    img = new Image();
+                    img.onload = function () {
+                        callback && callback({"width": this.width, "height": this.height, "filesize": file.size});
+                    };
+                    img.src = _URL.createObjectURL(file);
+                }
+            });
+        }
+
+        getImage('touxiang', function (obj) {
+            if (obj.width > 500 && obj.height > 500 && obj.filesize > 204800) {
+                layer.alert("请上传图片宽高小于500x500,不大于200k的图片", {icon: 2});
+                $('#touxiang').val('');
+            }
+        });
+
+        $('#photo').on('click', function () {
+            var filepath = $("#touxiang").val();
+            var extStart = filepath.lastIndexOf(".");
+            var ext = filepath.substring(extStart, filepath.length).toUpperCase();
+            //测试用户是否录入信息
+            if (filepath == "") {
+                layer.alert('请选择你要上传的头像', {icon: 2});
+                return false;
+            } else if (ext != ".BMP" && ext != ".PNG" && ext != ".GIF" && ext != ".JPG" && ext != ".JPEG") {
+                layer.alert("图片限于bmp,png,gif,jpeg,jpg格式", {icon: 2});
+                return false;
+            }
+        });
+
+
+        $('#set').on('click', function () {
+            var name = $("#name").val();
+            var sex = $("input[type='radio']:checked").val();
+            var qq = $("#qq").val();
+            var email = $("#email").val();
+            var city = $("#city").val();
+            var motto = $("#motto").val();
+
+            //测试用户是否录入信息
+            if (name == "") {
+                layer.alert('请填入你的昵称', {icon: 2});
+                return false;
+            }
+            $.post("/set", {name: name, sex: sex, qq: qq, email: email, city: city, motto: motto}, function (result) {
+                if (result.status === "-1") {
+                    layer.alert('系统错误', {icon: 2});
+                } else if (result.status === "-2") {
+                    layer.alert('请输入正确的邮箱地址', {icon: 2});
+                } else if (result.status === "-3") {
+                    layer.alert('获取用户数据失败！', {icon: 2});
+                } else if (result.status === "-5") {
+                    layer.alert('请填写正确的城市名称', {icon: 2});
+                } else if (result.status === "-6") {
+                    layer.alert('请输入正确的QQ号', {icon: 2});
+                } else if (result.status === "-7") {
+                    layer.alert('用户名长度为2-6', {icon: 2});
+                } else if (result.status === "-8") {
+                    layer.alert('签名名长度为2-16', {icon: 2});
+                } else {
+                    layer.alert('修改成功');
+                    //jquery实现页面跳转
+                    location.href = "/home"
+                }
+            });
+            //这句话的意思不会刷新当前页面。避免清空内容
+            return false;
+        });
+
+
+        $('#change').on('click', function () {
+            var nowpass = $("#L_nowpass").val();
+            var pass = $("#L_pass").val();
+            var repass = $("#L_repass").val();
+            //测试用户是否录入信息
+            if (nowpass == "" || pass == "" || repass == "") {
+                layer.alert('请填入完整信息', {icon: 2});
+                return false;
+            }
+            $.post("/change", {nowpass: nowpass, pass: pass, repass: repass}, function (result) {
+                if (result.status === "-1") {
+                    layer.alert('系统错误!', {icon: 2});
+                } else if (result.status === "-2") {
+                    layer.alert('两次新密码不匹配!', {icon: 2});
+                } else if (result.status === "-3") {
+                    layer.alert('获取用户数据失败!', {icon: 2});
+                } else if (result.status === "-4") {
+                    layer.alert('原密码错误！', {icon: 2});
+                } else if (result.status === "-5") {
+                    layer.alert('密码6-20位，只能包含字母数字下划线！', {icon: 2});
+                } else {
+                    layer.alert('修改成功');
+                }
+            });
+            //这句话的意思不会刷新当前页面。避免清空内容
+            return false;
+        });
+
+    });
+
+    layui.cache.page = 'user';
+    layui.cache.user = {
+        username: 'username'
+        , uid: -1
+        , experience: 83
+        , sex: '男'
+    };
+    layui.config({
+        version: "1.0.0"
+        , base: '../res/mods/'
+    }).extend({
+        fly: 'index'
+    }).use('fly');
+</script>
+
+</body>
+</html>

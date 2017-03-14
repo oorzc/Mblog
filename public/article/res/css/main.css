@@ -1,0 +1,186 @@
+.fly-list .fly-list-li{
+    padding: 45px 10px;
+    height: 14px;
+}
+.fly-list-li {
+  border: 1px solid #ccc;
+  box-shadow: 1px 1px 1px #ccc;
+  position: relative;
+}
+.fly-list-li img{
+    margin: 40px 0 0 20px;
+    float: left;
+}
+.fly-list-li1 p span {
+    padding-right: 5px;
+}
+@media screen and (max-width: 750px){
+    .fly-list-li h2 a {
+        max-width: 95%;
+    }
+}
+.fly-list-li h2{
+    width: 85%;
+    position: absolute;
+    top: 10px;
+    left: 25px;
+}
+.fly-list-li p{
+    float: left;
+    margin-left: 80px;
+}
+
+.fly-h{
+    color: #ccc;
+    display: block;
+    position: absolute;
+    top: 70px;
+    right: 25px;
+}
+
+.denglu{
+    margin: 60px 12px 60px 12px;
+    padding: 52px 47px 10px 10px;
+    border: 1px solid #ccc;
+    box-shadow: 1px 1px 2px #ccc;
+}
+
+.user-tab span a {
+    padding: 0 30px;
+}
+.avatar-add p {
+    position: absolute;
+    top: 70px;
+    width: 82%;
+    margin-top: 10px;
+    font-size: 12px;
+    text-align: center;
+    color: #999;
+    margin-left: 28px;
+}
+.avatar-add {
+    position: relative;
+    width: 297px;
+    height: 373px;
+    background-color: #F2F2F5;
+}
+.nav-user .nav {
+    top: 4px;
+}
+.jieda-admin {
+    top: -16px;
+}
+
+.layui-btn1{
+    font-size: 15px;
+    height: 30px;
+    line-height: 30px;
+    padding: 0 4px;
+}
+
+.jcrop-holder #preview-pane {
+    display: block;
+    position: absolute;
+    z-index: 1;
+    top: 60px;
+    right: -280px;
+}
+@media screen and (max-width: 500px){
+    .layui-btn2{
+        float: left;
+        margin-top: 110px;
+    }
+    .jcrop-holder #preview-pane {
+        top: 210px;
+        right: 88px;
+    }
+}
+
+@media screen and (max-width: 750px) {
+    .nav,
+    .fly-tab1,
+    .fly-list-hint{display:block; }
+}
+
+.fly-main {
+    position: relative;
+    width: 100%;
+    margin: 0 auto;
+}
+.home-left {
+    width: 100%;
+    float: left;
+}
+.jie-row li .jie-tit {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 45%;
+}
+
+.jie-row li .jie-tit {
+    overflow: hidden;
+    width: 45%;
+}
+@media screen and (max-width: 750px) {
+    .home-left {
+        width: 100%;
+    }
+}
+.fly-list-one li{
+   position: relative;
+   top: 0;
+   right: 0;
+}
+.pop{
+ position: absolute;
+ top: 0;
+ right: 0;
+}
+.jieda-reply span i {
+    margin-right: 1px;
+    font-size: 14px;
+}
+body .leifeng-rank {
+    width: 99%;
+    margin-left: 0px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+body .leifeng-rank span a {
+    width: 78px;
+    height: 98px;
+    margin: 10px 5px 10px 5px;
+}
+.user-looklog {
+    margin-top: 20px;
+    text-align: center;
+    border: 1px solid #ccc;
+    box-shadow: 1px 1px 1px #ccc;
+}
+.fly-list-one {
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #ccc;
+    box-shadow: 1px 1px 1px #ccc;
+}
+.edge .page-title {
+    background-color: #393D49;
+}
+.cai{
+    padding: 5px 0 0 25px;
+    background: url(/res/images/dislike1.png) no-repeat;
+    background-size: 22px 22px;
+}
+.cai_v{
+    padding: 5px 0 0 25px;
+    background: url(/res/images/dislike2.png) no-repeat;
+    background-size: 22px 22px;
+}
+.cai:hover{
+    background: url(/res/images/dislike2.png) no-repeat;
+    background-size: 22px 22px;
+}
+.footer{
+    color: #5FB676;
+    background: #393D49;
+}

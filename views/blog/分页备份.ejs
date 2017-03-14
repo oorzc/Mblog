@@ -1,0 +1,19 @@
+<% if (!isFirstPage) { %>
+<a class="laypage-first" href="/?page=<%= pageNum-1 %>">上一页</a>
+<% } %>
+<% if(pageCount > 1){
+    var currentPage = 1;
+        while(currentPage < pageCount){
+if(currentPage === pageNum)
+{ %>
+<a class="laypage-curr" href="/?page=<%= currentPage %>"><%= currentPage++ %></a>
+<% } %>
+else
+<% { %>
+<a href="/?page=<%- currentPage %>"><%= currentPage++ %></a>
+<% } %>
+<% } } %>
+<% if (!isLastPage) { %>
+<a  class="laypage-next" href="/?page=<%= pageNum+1 %>">下一页</a>
+<% } %>
+<a class="laypage-last" href="/?page=<%= pageCount %>">&gt;&gt;</a>

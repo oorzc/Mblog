@@ -1,0 +1,64 @@
+<%- include include_header %>
+<div class="fly-home">
+    <img src="/avatar/<%= user.avatar %>" alt="{{info.username}}">
+    <h1><%= user.name %>
+        <i class="iconfont icon-<%= user.sex %>"></i>
+        <div class="fly-sns">
+            <span><i class="layui-icon">&#xe63a;</i> QQ：<span
+                        style="color: #FF7200;"><%= user.qq %></span></span>
+        </div>
+        <div class="fly-sns">
+            <span><i class="iconfont icon-shijian"></i> 加入时间：<span><%- moment(user.create).format('YYYY-MM-DD') %></span></span>
+        </div>
+        <div class="fly-sns">
+            <span><i class="iconfont icon-chengshi"></i> 城市：<span><%- user.city %></span></span>
+        </div>
+        <div class="fly-sns">
+            <span lay-event=""><%= user.motto %></span>
+        </div>
+        <br>
+        <% if(username){ %>
+        <div class="fly-sns">
+            <a class="layui-btn layui-btn1" href="/set">修改资料</a>&nbsp;&nbsp;<a class="layui-btn layui-btn1" href="/add">发表文章</a>
+            <% } %>
+        </div>
+</div>
+
+<div class="main layui-clear">
+    <div class="fly-main layui-clear">
+        <div class="home-nav">
+            <a href="">主页</a>
+        </div>
+        <div class="home-left">
+            <h2>发表过的文章</h2>
+            <ul class="jie-row">
+                <% for(var i = 0 ; i < articles.length ; i++){ %>
+                <li>
+                    <tt class="jie-tit"><a href="/article/?id=<%= articles[i].id %>"><%= articles[i].title %></a></tt>
+                    <em><%= moment(articles[i].create).format('YYYY-MM-DD') %>&nbsp;&nbsp;&nbsp;<i class="iconfont"
+                                                                                                   title="人气">
+                            &#xe60b;</i> <%= articles[i].visit %></em>
+                </li>
+                <% } %>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div style="text-align: center">
+    <div class="laypage-main clearfix">
+        <% if (pageCount > 1) { %>
+        <a class="laypage-first" href="/home?id=<%= user.id %>&page=1">&lt;&lt;</a>
+        <% if (pageNum > 1) { %>
+        <a class="laypage-prev" href="/home?id=<%= user.id %>&page=<%= pageNum - 1 %>">上一页</a>
+        <% } %>
+        <% if (pageNum < pageCount) { %>
+        <a class="laypage-next" href="/home?id=<%= user.id %>&page=<%= pageNum + 1 %>">下一页</a>
+        <% } %>
+        <a class="laypage-last" href="/home?id=<%= user.id %>&page=<%= pageCount %>">&gt;&gt;</a>
+        <% } %>
+    </div>
+</div>
+<%- include include_footer %>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1 , user-scalable=no">
+
+    <title>Blog</title>
+    <link href="/res/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/res/css/layui.css" rel="stylesheet">
+    <link href="/res/css/global.css" rel="stylesheet">
+    <link id="layuicss-skinlayercss" rel="stylesheet" href="/res/layui/css/modules/layer/layer.css" media="all">
+    <link rel="stylesheet" type="text/css" href="res/css/jquery.Jcrop.css">
+    <link href="/res/css/main.css" rel="stylesheet">
+
+</head><!--/head-->
+<body class="homepage">
+<div class="header">
+    <div class="main">
+        <a class="logo" href="/" title="Fly">Fly</a>
+        <div class="nav-user">
+            <!-- 登入后的状态 -->
+            <% if(!username){ %>
+            <div class="nav">
+                <a href="/login">登入</a>
+                <a href="/register">注册</a>
+            </div>
+            <% }else{ %>
+            <div class="nav">
+                <a class="avatar" href="/home/?id=<%- user.id %>">
+                    <img src="/avatar/<%= user.avatar %>" alt="{{info.username}}">
+                </a>
+                <a href="/home/?id=<%- user.id %>"><%= user.name %></a>
+                <a href="/out"><i class="iconfont icon-tuichu" style="top: 0; font-size: 22px;"></i>退了</a>
+            </div>
+            <% } %>
+        </div>
+    </div>
+</div>
+</div>
+
+<div class="main layui-clear">
+    <div class="fly-main layui-clear">
+        <img src="/avatar/<%= avatar %>" id="target" alt="[Jcrop Example]"/>
+        <div id="preview-pane">
+            <div class="preview-container">
+                <img src="/avatar/<%= avatar %>" class="jcrop-preview" alt="Preview"/>
+            </div>
+        </div>
+        <br>
+        <input type="button" value="剪裁头像" id="btn" class="layui-btn layui-btn2">
+    </div>
+</div>
+
+<div class="footer">
+    <p>
+        <a href="#">Copyright©2016&nbsp;&nbsp;黑夜&nbsp;&nbsp;版权所有
+        </a>
+    </p>
+</div>
+
+
+<script src="res/layui/layui.js"></script>
+<script src="/js/jquery.min.js"></script>
+<script src="/js/jquery.Jcrop.js"></script>
+<script type="text/javascript" src="/js/xiaoguo.js"></script>
+
+<script type="text/javascript">
+    layui.use(['layer'], function () {
+        var layer = layui.layer,
+                $ = layui.jquery;
+
+        $("#btn").click(function () {
+            var w = parseInt($(".jcrop-holder>div:first").css("width"));
+            var h = parseInt($(".jcrop-holder>div:first").css("height"));
+            var x = parseInt($(".jcrop-holder>div:first").css("left"));
+            var y = parseInt($(".jcrop-holder>div:first").css("top"));
+
+            $.get("/docut", {
+                "w": w,
+                "h": h,
+                "x": x,
+                "y": y
+            }, function (result) {
+                if (result.status == "-1") {
+                    layer.alert('剪切失败', {icon: 2});
+                }else{
+                       //jquery实现页面跳转
+                    location.href = "/home?id=<%- user.id %>"
+                }
+            });
+        });
+    });
+</script>
+</body>
+</html>
