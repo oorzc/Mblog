@@ -1,23 +1,23 @@
 <%- include include_header %>
 <div class="fly-home">
-    <img src="/avatar/<%= user.avatar %>" alt="{{info.username}}">
-    <h1><%= user.name %>
-        <i class="iconfont icon-<%= user.sex %>"></i>
+    <img src="/avatar/<%= author.avatar %>" alt="{{info.username}}">
+    <h1><%= author.name %>
+        <i class="iconfont icon-<%= author.sex %>"></i>
         <div class="fly-sns">
             <span><i class="layui-icon">&#xe63a;</i> QQ：<span
-                style="color: #FF7200;"><%= user.qq %></span></span>
+                style="color: #FF7200;"><%= author.qq %></span></span>
             </div>
             <div class="fly-sns">
-                <span><i class="iconfont icon-shijian"></i> 加入时间：<span><%- moment(user.create).format('YYYY-MM-DD') %></span></span>
+                <span><i class="iconfont icon-shijian"></i> 加入时间：<span><%- moment(author.create).format('YYYY-MM-DD') %></span></span>
             </div>
             <div class="fly-sns">
-                <span><i class="iconfont icon-chengshi"></i> 城市：<span><%- user.city %></span></span>
+                <span><i class="iconfont icon-chengshi"></i> 城市：<span><%- author.city %></span></span>
             </div>
             <div class="fly-sns">
-                <span lay-event=""><%= user.motto %></span>
+                <span lay-event=""><%= author.motto %></span>
             </div>
             <br>
-            <% if(username){ %>
+            <% if(user.username == author.username){ %>
             <div class="fly-sns">
                 <a class="layui-btn layui-btn1" href="/set">修改资料</a>&nbsp;&nbsp;<a class="layui-btn layui-btn1" href="/add">发表文章</a>
                 <% } %>

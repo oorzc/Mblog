@@ -57,26 +57,31 @@ exports.showHome = function (req, res) {
     var username = req.session.username;
     var params = url.parse(req.url, true);
     var id = params.query.id;
-    User.findOne({_id: id}, function (err, user) {
-        Article.find({username: user.username})
-        .sort({'_id': -1})
-        .populate('author')
-        .exec(function (err, articles) {
-            var pageNum = Math.abs(parseInt(req.query.page || 1, 8));
-            var pageSize = 8;
+    User.findOne({username: username}, function (err, user) {
+        console.log(user)
+        User.findOne({_id: id}, function (err, author) {
+            var name = author.username;
+            Article.find({username: name})
+            .sort({'_id': -1})
+            .populate('author')
+            .exec(function (err, articles) {
+                var pageNum = Math.abs(parseInt(req.query.page || 1, 8));
+                var pageSize = 8;
 
-            var totalCount = articles.length;
-            var pageCount = Math.ceil(totalCount / pageSize);
+                var totalCount = articles.length;
+                var pageCount = Math.ceil(totalCount / pageSize);
 
-            if (pageNum > pageCount) {
-                pageNum = pageCount;
-            }
-            res.render("blog/home", {
-                user: user,
-                pageNum: pageNum,
-                pageCount: pageCount,
-                articles: articles.slice((pageNum - 1) * pageSize, pageNum * pageSize)
-            });
+                if (pageNum > pageCount) {
+                    pageNum = pageCount;
+                }
+                res.render("blog/home", {
+                    user: user,
+                    author: author,
+                    pageNum: pageNum,
+                    pageCount: pageCount,
+                    articles: articles.slice((pageNum - 1) * pageSize, pageNum * pageSize)
+                });
+            }); 
         });
     });
 };
