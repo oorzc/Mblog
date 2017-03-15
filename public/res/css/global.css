@@ -78,9 +78,6 @@ body .layui-layer-prompt textarea.layui-layer-input{resize: both;}
 .icon-top:before { content: "\e624"; }
 .icon-ui:before { content: "\e625"; }
 
-
-
-
 /* 辅助 */
 pre{padding: 10px 15px; margin: 10px 0; font-size:12px; border:1px solid #ddd; border-left-width: 6px;  background-color: #F2F2F2; font-family: Courier New; overflow: auto;}
 .fly-main{position:relative; width:1000px; margin:0 auto;}
