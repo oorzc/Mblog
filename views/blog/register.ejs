@@ -5,77 +5,84 @@
   <meta name="viewport" content="width=device-width, initial-scale=1 , user-scalable=no">
   <meta name="description" content="">
   <meta name="author" content="">
-  <title>Blog</title>
-
+  <title>注册</title>
   <!-- core CSS -->
-  <link href="res/css/main.css" rel="stylesheet">
-  <link href="res/css/layui.css" rel="stylesheet">
-  <link href="res/css/global.css" rel="stylesheet">
+  <link href="/res/css/global.css" rel="stylesheet">
+  <link href="/res/css/font-awesome.min.css" rel="stylesheet">
+  <link href="/res/css/layui.css" rel="stylesheet">
+  <link id="layuicss-skinlayercss" rel="stylesheet" href="/res/layui/css/modules/layer/layer.css" media="all">
+  <link href="/res/css/main.css" rel="stylesheet">
   <!--[if lt IE 9]>
   <script src="res/layui/js/html5shiv.js"></script>
   <script src="res/layui/js/respond.min.js"></script>
   <![endif]-->
-  <link id="layuicss-skinlayercss" rel="stylesheet" href="res/layui/css/modules/layer/layer.css" media="all">
-  <!--<style type="text/css">-->
-  <!--body {-->
-  <!--padding-top: 120px;-->
-  <!--}-->
-  <!--#cuowukuang{-->
-  <!--display: none;-->
-  <!--}-->
-  <!--</style>-->
 </head>
+<!--头部-->
 <body class="homepage">
   <div class="header">
     <div class="main">
-      <a class="logo" href="/" title="Fly">Fly黑夜</a>
+      <h1> <a href="/" title="">遗落阁</a></h1>           
+    </div>
+  </div>
+  <!--头部结束-->
+  <div class="main layui-clear">
+    <div class="wrap">
+      <div class="layui-form layui-form-pane">
+        <div class="fox-width-m">
+          <div class="layui-tab layui-tab-card">
+            <ul class="layui-tab-title">
+            <li class="layui-this">会员注册</li>
+            <li><a href="/login">会员登陆</a></li>        
+            </ul>
+            <div class="layui-tab-content">
+              <div class="layui-tab-item padding layui-show">
+                <form method="post" class="layui-form">
+                  <div class="fox-form" style="margin-top:20px">
+                    <fieldset class="layui-elem-field layui-field-title">
+                      <legend>会员注册</legend>
+                    </fieldset>
+                    <div class="layui-form-item">
+                       <label for="username" class="layui-form-label">用户名</label>
+                      <div class="layui-input-block">
+                        <input type="text" class="layui-input" name="username" id="username" lay-verify="username" autocomplete="off" placeholder="请输入用户帐号" />
+                        <i class="icon icon-user"></i>
+                      </div>
+                        <div class="layui-form-mid layui-word-aux">用户名为6-16位，以字母开头，只能包含字母数字下划线</div>
+                    </div>
+
+                    <div class="layui-form-item">
+                   <label for="password" class="layui-form-label">密码</label>
+                      <div class="layui-input-block">
+                        <input type="password" class="layui-input" name="password" id="password" lay-verify="password" autocomplete="off" placeholder="请输入密码" />
+                        <i class="icon icon-key"></i>
+                      </div>
+                      <div class="layui-form-mid layui-word-aux">密码6-16位，只能包含字母数字下划线</div>
+                    </div>
+
+                    <div class="layui-form-item">
+                       <label for="repassword" class="layui-form-label">确认密码</label>
+                      <div class="layui-input-block">
+                        <input type="password" class="layui-input" name="repassword" id="repassword" lay-verify="repassword" autocomplete="off" placeholder="请重复密码" />
+                        <i class="icon icon-key"></i>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="field">
+                        <button class="layui-btn button-block" lay-submit="" lay-filter="login" id="register">立即注册</button>
+                        <a class="layui-btn" href="/login" >我要去登陆</a>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
-
-<div class="main layui-clear">
-  <h2 class="page-title">注册</h2>
-  <div class="layui-form layui-form-pane">
-    <!--<div class="layui-btn layui-btn-danger" id="cuowukuang">-->
-    <!--用户名被占用，请更换-->
-    <!--</div>-->
-    <form method="post">
-      <div class="layui-form-item">
-        <label for="username" class="layui-form-label">用户名</label>
-        <div class="layui-input-inline">
-          <input type="text" id="username" name="username" required lay-verify="required" autocomplete="off" class="layui-input">
-        </div>
-        <div class="layui-form-mid layui-word-aux">用户名为6-16位，以字母开头，只能包含字母数字下划线</div>
-      </div>
-      <div class="layui-form-item">
-        <label for="password" class="layui-form-label">密码</label>
-        <div class="layui-input-inline">
-          <input type="password" id="password" name="password" required lay-verify="required" autocomplete="off" class="layui-input">
-        </div>
-        <div class="layui-form-mid layui-word-aux">密码6-16位，只能包含字母数字下划线</div>
-      </div>
-      <div class="layui-form-item">
-        <label for="repassword" class="layui-form-label">确认密码</label>
-        <div class="layui-input-inline">
-          <input type="password" id="repassword" name="repassword" required lay-verify="required" autocomplete="off" class="layui-input">
-        </div>
-      </div>
-      <div class="layui-form-item">
-        <button class="layui-btn" lay-filter="*" lay-submit id="register">立即注册</button>
-        <a class="layui-btn" href="/login" >我要去登陆</a>
-      </div>
-    </form>
-  </div>
-</div>
-
-<div class="footer">
-  <p>
-    <a href="#">Copyright©2016&nbsp;&nbsp;黑夜&nbsp;&nbsp;版权所有
-    </a>
-  </p>
-</div>
-
-<script src="res/layui/layui.js"></script>
+<%- include include_footer %>
 <script>
   layui.use(['layer'], function() {
     var layer = layui.layer,
@@ -117,7 +124,6 @@
     });
   });
 </script>
-
 <!--<script type="text/javascript">-->
 <!--$("input").focus(function(){-->
 <!--$("#cuowukuang").fadeOut();-->

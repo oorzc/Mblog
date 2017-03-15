@@ -36,11 +36,11 @@ exports.admin = function (req, res) {
 
 //登陆页面
 exports.showLogin = function (req, res) {
-    res.render('admin/login');
+    res.render('blog/login');
 };
 //注册页面
 exports.showRegister = function (req, res) {
-    res.render('admin/register');
+    res.render('blog/register');
 };
 //注册业务
 exports.doRegister = function (req, res) {

@@ -17,15 +17,19 @@ var md5 = require('md5');
 //首页
 exports.showIndex = function (req, res, next) {
     var ep = new eventproxy();
+    //所有文章
     Article.find("articles", {}).sort({'_id': -1}).populate('author').exec(function (err, articles) {
         ep.emit('article_data_ok', articles);
     });
-    Article.find("articles", {}).sort({'comments': -1}).limit(10).exec(function (err, remen) {
+    // 热门文章
+    Article.find("articles", {}).sort({'visit': -1}).limit(10).exec(function (err, remen) {
         ep.emit('remen_data_ok', remen);
     });
+    // 所有用户
     User.find("users", {}).sort({'comments': -1}).limit(9).exec(function (err, users) {
         ep.emit('user_data_ok', users);
     });
+    // 好评用户
     User.find("users", {}).sort({'zan': -1}).limit(10).exec(function (err, zan) {
         ep.emit('zan_data_ok', zan);
     });

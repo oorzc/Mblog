@@ -119,15 +119,15 @@
                     img = new Image();
                     img.onload = function () {
                         callback && callback({"width": this.width, "height": this.height, "filesize": file.size});
+                        console.log(this.width);console.log(this.height);console.log(file.size);
                     };
                     img.src = _URL.createObjectURL(file);
                 }
             });
         }
-
-        getImage('touxiang', function (obj) {
-            if (obj.width > 500 && obj.height > 500 && obj.filesize > 204800) {
-                layer.alert("请上传图片宽高小于500x500,不大于200k的图片", {icon: 2});
+        getImage('touxiang', function (obj) {           
+            if ( obj.filesize > 102400 && obj.width >= 300 && obj.height >= 300) {
+                layer.alert("请上传图片宽高小于300x300,不大于100k的图片", {icon: 2});
                 $('#touxiang').val('');
             }
         });
