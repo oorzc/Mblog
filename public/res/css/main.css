@@ -1,8 +1,12 @@
 /*头部底部*/
 .header{color:#fff;opacity:.95;filter:alpha(opacity=95);background-color:#009688}
 .header a{color:#fff}
-.header .main h1{position:absolute;top:18px;left:10px;font-size:25px;line-height:25px}
+.header .main h1{position:absolute;top:18px;left:0px;font-size:25px;line-height:25px}
+@media screen and (max-width:550px){.header .main h1{left:18px}
+}
 .nav-user{position:absolute;top:14px;right:0}
+@media screen and (max-width:550px){.nav-user{right:10px}
+}
 .footer{line-height:0;color:#fff;opacity:.9;filter:alpha(opacity=90);background-color:#009688}
 .footer a{color:#fff}
 
