@@ -35,7 +35,6 @@ app.use(session({
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.locals.moment = require('moment');
-app.locals.truncate = require('truncate');
 
 app.use(logger('dev'));
 app.use(bodyParser.json());

@@ -1,6 +1,6 @@
 <%- include include_header %>
 <div class="fly-home">
-    <img src="/avatar/<%= author.avatar %>" alt="{{info.username}}">
+    <img src="/avatar/<%= author.avatar %>" alt="{{info.authorname}}">
     <h1><%= author.name %>
         <i class="iconfont icon-<%= author.sex %>"></i>
         <div class="fly-sns">
@@ -17,7 +17,7 @@
                 <span lay-event=""><%= author.motto %></span>
             </div>
             <br>
-            <% if(user.username == author.username){ %>
+            <% if(username == author.username){ %>
             <div class="fly-sns">
                 <a class="layui-btn layui-btn1" href="/set">修改资料</a>&nbsp;&nbsp;<a class="layui-btn layui-btn1" href="/add">发表文章</a>
                 <% } %>
@@ -39,26 +39,26 @@
                                 title="人气">
                                 &#xe60b;</i> <%= articles[i].visit %></em>
                             </li>
-                            <% } %>
-                        </ul>
-                    </div>
-                </div>
+                    <% } %>
+                </ul>
             </div>
+        </div>
+    </div>
 
-            <div style="text-align: center">
-                <div class="laypage-main clearfix">
-                    <% if (pageCount > 1) { %>
-                    <a class="laypage-first" href="/home?id=<%= user.id %>&page=1">&lt;&lt;</a>
-                    <% if (pageNum > 1) { %>
-                    <a class="laypage-prev" href="/home?id=<%= user.id %>&page=<%= pageNum - 1 %>">上一页</a>
-                    <% } %>
-                    <% if (pageNum < pageCount) { %>
-                    <a class="laypage-next" href="/home?id=<%= user.id %>&page=<%= pageNum + 1 %>">下一页</a>
-                    <% } %>
-                    <a class="laypage-last" href="/home?id=<%= user.id %>&page=<%= pageCount %>">&gt;&gt;</a>
-                    <% } %>
-                </div>
-            </div>
-            <%- include include_footer %>
-        </body>
-        </html>
+    <div style="text-align: center">
+        <div class="laypage-main clearfix">
+            <% if (pageCount > 1) { %>
+            <a class="laypage-first" href="/home?id=<%= user.id %>&page=1">&lt;&lt;</a>
+            <% if (pageNum > 1) { %>
+            <a class="laypage-prev" href="/home?id=<%= user.id %>&page=<%= pageNum - 1 %>">上一页</a>
+            <% } %>
+            <% if (pageNum < pageCount) { %>
+            <a class="laypage-next" href="/home?id=<%= user.id %>&page=<%= pageNum + 1 %>">下一页</a>
+            <% } %>
+            <a class="laypage-last" href="/home?id=<%= user.id %>&page=<%= pageCount %>">&gt;&gt;</a>
+            <% } %>
+        </div>
+    </div>
+    <%- include include_footer %>
+</body>
+</html>
