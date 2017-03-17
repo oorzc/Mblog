@@ -42,7 +42,7 @@ app.use(cookieParser());
 
 app.use(express.static("./public"));
 app.use("/avatar",express.static("./public/avatar"));
-   app.locals.moment = require('moment');//在模板中使用时间处理
+app.locals.moment = require('moment');//在模板中使用时间处理
 
 //session
 app.use(function (req, res, next) {
