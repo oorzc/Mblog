@@ -34,7 +34,6 @@ app.use(session({
 //view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
-app.locals.moment = require('moment');
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -43,6 +42,7 @@ app.use(cookieParser());
 
 app.use(express.static("./public"));
 app.use("/avatar",express.static("./public/avatar"));
+   app.locals.moment = require('moment');//在模板中使用时间处理
 
 //session
 app.use(function (req, res, next) {

@@ -8,7 +8,7 @@ var  UserSchema=new Schema({
     password:{type:String,default:''},
     sex:{type:String,default:''},
     email:{type:String,default:''},
-    qq:{type:Number,default:null},
+    qq:{type:Number,default:''},
     motto:{type:String,default:'这个人很懒，什么个性签名都没有留下...'},
     avatar:{type:String},
     city:{type:String,default:''},

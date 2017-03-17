@@ -22,11 +22,11 @@
                     <ul class="fly-list">
                         <% for(var i = 0 ; i < articles.length ; i++){ %>
                         <li class="fly-list-li fly-list-li1">
-                            <a href="/home?id=<%= articles[i].author.id %>" class="fly-list-avatar">
+                            <a href="/home/?id=<%= articles[i].author.id %>" class="fly-list-avatar">
                                 <img src="/avatar/<%= articles[i].author.avatar %>" alt="">
                             </a>
                             <h2 class="fly-tip">
-                                <a href="/article?id=<%= articles[i].id %>"> <%- articles[i].title %> </a>
+                                <a href="/article/?id=<%= articles[i].id %>"> <%- articles[i].title %> </a>
                             </h2>
                             <p>
                                 <span class="fly-s"><a
@@ -63,7 +63,7 @@
                 <div class="user-looklog leifeng-rank">
                   <span>
                       <% for(var i = 0 ; i < users.length ; i++){ %>
-                      <a href="/home?id=<%= users[i].id %>">
+                      <a href="/home/?id=<%= users[i].id %>">
                           <img src="/avatar/<%- users[i].avatar %>" alt="<%- users[i].name %>">
                           <cite><%- users[i].name %></cite>
                           <i><%- users[i].comments %>次回答</i>
@@ -76,7 +76,7 @@
               <ol class="fly-list-one">
                 <% for(var i = 0 ; i < remen.length ; i++){ %>
                 <li>
-                    <a href="/article?id=<%- remen[i].id %>"><%- remen[i].title %></a>
+                    <a href="/article/?id=<%- remen[i].id %>"><%- remen[i].title %></a>
                     <span class="pop"><i class="iconfont">&#xe60b;</i> <%- remen[i].visit %></span>
                 </li>
                 <% } %>
@@ -85,7 +85,7 @@
             <ol class="fly-list-one">
                 <% for(var i = 0 ; i < zan.length ; i++){ %>
                 <li>
-                    <a href="/home?id=<%= zan[i].id %>" id="comment"><%- zan[i].name %></a>
+                    <a href="/home/?id=<%= zan[i].id %>" id="comment"><%- zan[i].name %></a>
                     <span class="pop"><i class="iconfont icon-zan"></i> <%- zan[i].zan %></span>
                 </li>
                 <% } %>

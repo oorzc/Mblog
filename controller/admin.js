@@ -14,9 +14,6 @@ var moment = require('moment');
 //     avatar : 'moren.jpg',
 //     password:md5(md5(md5('admin')))+md5(md5(md5('admin'))),
 //     create : moment(new Date()).format('YYYY-MM-DD HH:mm'),
-//     comments: 0,  //评论量
-//     articles: 0,  //发帖量
-//     zan: 0,  //发帖量
 //     status:'2',
 // });
 // //存入数据库
@@ -64,10 +61,6 @@ exports.doRegister = function (req, res) {
     }
     //用户名必须唯一
     User.findOne({username: username}, function (err, user) {
-        if (err) {
-            res.json({"status": "-5"}); //获取用户数据失败！
-            return;
-        }
         if (user) {
             res.json({"status": "-4"}); //用户已存在！
             return;
@@ -83,7 +76,7 @@ exports.doRegister = function (req, res) {
             );
             User.create(user, function (err) {
                 if (err) {
-                    res.json({"status": "-3"}); //获取用户数据失败！
+                    res.json({"status": "-5"}); //系统错误！
                     return;
                 }
                 res.json({'status': '1'});//注册成功

@@ -31,7 +31,7 @@
                 <% }else{ %>
                 <div class="nav">
                     <a class="avatar" href="/home/?id=<%- user.id %>">
-                        <img src="/avatar/<%- user.avatar %>" alt="{{info.username}}">
+                        <img src="/avatar/<%- user.avatar %>" alt="<%- user.name%>">
                     </a>
                     <a href="/home/?id=<%- user.id %>"><%- user.name%></a>
                     <a href="/out"><i class="iconfont icon-tuichu" style="top: 0; font-size: 22px;"></i>退了</a>

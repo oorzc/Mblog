@@ -12,7 +12,7 @@
                 </div>
             </div>
             <div class="detail-about">
-                <a class="jie-user" href="/home?id=<%= article.author.id %>">
+                <a class="jie-user" href="/home/?id=<%= article.author.id %>">
                     <img src="/avatar/<%- article.author.avatar %>" alt="">
                     <cite>
                         <em><%- article.author.name %></em>
@@ -37,7 +37,7 @@
                 <li data-id="12" class="jieda-daan">
                     <a name="item-121212121212" href="javascript:volid(0);"></a>
                     <div class="detail-about detail-about-reply">
-                        <a class="jie-user" href="/home?id=<%= comments[i].user.id %>">
+                        <a class="jie-user" href="/home/?id=<%= comments[i].user.id %>">
                             <img src="/avatar/<%- comments[i].user.avatar %>" alt="">
                             <cite>
                                 <i> <%- comments[i].user.name %></i>
