@@ -29,11 +29,11 @@ exports.showIndex = function (req, res, next) {
     User.find("users", {}).sort({'comments': -1}).limit(9).exec(function (err, users) {
         ep.emit('user_data_ok', users);
     });
-    // 好评用户
-    User.find("users", {}).sort({'zan': -1}).limit(10).exec(function (err, zan) {
-        ep.emit('zan_data_ok', zan);
+    // 近期热议
+    Article.find("articles", {}).sort({'comments': -1}).limit(10).exec(function (err, reyi) {
+        ep.emit('reyi_data_ok', reyi);
     });
-    ep.all('article_data_ok', 'remen_data_ok', 'user_data_ok', 'zan_data_ok', function (articles, remen, users, zan) {
+    ep.all('article_data_ok', 'remen_data_ok', 'user_data_ok', 'reyi_data_ok', function (articles, remen, users, reyi) {
         var pageNum = Math.abs(parseInt(req.query.page || 1, 9));
         var pageSize = 9;
         var totalCount = articles.length;
@@ -43,7 +43,7 @@ exports.showIndex = function (req, res, next) {
         }
         res.render('blog/index', {
             remen: remen,
-            zan: zan,
+            reyi: reyi,
             users: users,
             articles: articles.slice((pageNum - 1) * pageSize, pageNum * pageSize),
             pageNum: pageNum,

@@ -81,12 +81,12 @@
                 </li>
                 <% } %>
             </ol>
-            <h3 class="page-title" style="color: #fff">最受好评</h3>
+            <h3 class="page-title" style="color: #fff">近期热议</h3>
             <ol class="fly-list-one">
-                <% for(var i = 0 ; i < zan.length ; i++){ %>
+                <% for(var i = 0 ; i < reyi.length ; i++){ %>
                 <li>
-                    <a href="/home/?id=<%= zan[i].id %>" id="comment"><%- zan[i].name %></a>
-                    <span class="pop"><i class="iconfont icon-zan"></i> <%- zan[i].zan %></span>
+                    <a href="/home/?id=<%= reyi[i].id %>" id="comment"><%- reyi[i].title %></a>
+                    <span class="pop"><i class="iconfont">&#xe60c;</i> <%- reyi[i].comments %></span>
                 </li>
                 <% } %>
             </ol>
