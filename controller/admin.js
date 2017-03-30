@@ -47,11 +47,11 @@ exports.doRegister = function (req, res) {
     var repassword = req.body.repassword;
 
     // //在服务器端再次验证数据格式
-    if (!validator.matches(username, /^[a-zA-Z][a-zA-Z0-9_]{6,16}$/)) {
+    if (!validator.matches(username, /^[a-zA-Z][a-zA-Z0-9_]{5,16}$/)) {
         res.json({"status": "-1"});   // "用户名为6-16位，以字母开头，只能包含字母数字下划线";
         return;
     }
-    if (!validator.matches(password, /^[?!a-zA-Z0-9_]{6,16}$/)) {
+    if (!validator.matches(password, /^[a-zA-Z0-9_]{6,16}$/)) {
         res.json({"status": "-2"});//密码6-16位，只能包含字母数字下划线
         return;
     }
