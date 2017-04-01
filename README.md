@@ -27,7 +27,7 @@
 ![移动端1.png](http://imglf0.nosdn.127.net/img/dXN2dkFWak5GQ0pHWUx2M1J1cS9GK2ZESkx6d2VoOWxqYzBHUDgxZVJ0cUdEeUhoaUg1MjJnPT0.png?imageView&thumbnail=300x0&quality=96&stripmeta=0&type=jpg)
 
 
-![移动端2.png](http://imglf.nosdn.127.net/img/dXN2dkFWak5GQ0lvV2YvOW5oWjN2SU93RG9xTm0yaHJqa2NsSDF5Z3FZYWNBU1gzZUw2a3BRPT0.png?imageView&thumbnail= 300x0&quality=96&stripmeta=0&type=jpg)
+![移动端2.png](http://imglf.nosdn.127.net/img/dXN2dkFWak5GQ0lvV2YvOW5oWjN2SU93RG9xTm0yaHJqa2NsSDF5Z3FZYWNBU1gzZUw2a3BRPT0.png?imageView&thumbnail=300x0&quality=96&stripmeta=0&type=jpg)
 
 **3、后台管理系统：**
 ![网站后台展示.png](http://imglf1.nosdn.127.net/img/dXN2dkFWak5GQ0pHWUx2M1J1cS9GMTNhU01WWTBnZ3FoQkF2SjhqSWFDNkZ3eld0MkVNRHVBPT0.jpg?imageView&thumbnail=1680x0&quality=96&stripmeta=0&type=jpg)
