@@ -22,8 +22,12 @@
 ![文章详情页.png](http://imglf2.nosdn.127.net/img/dXN2dkFWak5GQ0pHWUx2M1J1cS9GNUhFdnBYekFsZ2pDT3U1L01xYXZQRnFkaWpSM2FHQVpnPT0.jpg?imageView&thumbnail=1680x0&quality=96&stripmeta=0&type=jpg)
 
 **2、移动端显示：**
-![移动端1.png](http://imglf0.nosdn.127.net/img/dXN2dkFWak5GQ0pHWUx2M1J1cS9GK2ZESkx6d2VoOWxqYzBHUDgxZVJ0cUdEeUhoaUg1MjJnPT0.png?imageView&thumbnail=1680x0&quality=96&stripmeta=0&type=jpg)
-![移动端2.png](http://imglf.nosdn.127.net/img/dXN2dkFWak5GQ0pHWUx2M1J1cS9GNUJQaEFxUVBMendSOFhobG15MHNKbkNTc29zSHVCZEF3PT0.png?imageView&thumbnail=1680x0&quality=96&stripmeta=0&type=jpg)
+
+
+![移动端1.png](http://imglf0.nosdn.127.net/img/dXN2dkFWak5GQ0pHWUx2M1J1cS9GK2ZESkx6d2VoOWxqYzBHUDgxZVJ0cUdEeUhoaUg1MjJnPT0.png?imageView&thumbnail=1680x0&quality=96&stripmeta=0&type=jpg =300x500)
+
+
+![移动端2.png](http://imglf.nosdn.127.net/img/dXN2dkFWak5GQ0pHWUx2M1J1cS9GNUJQaEFxUVBMendSOFhobG15MHNKbkNTc29zSHVCZEF3PT0.png?imageView&thumbnail=1680x0&quality=96&stripmeta=0&type=jpg =300x500)
 
 **3、后台管理系统：**
 ![网站后台展示.png](http://imglf1.nosdn.127.net/img/dXN2dkFWak5GQ0pHWUx2M1J1cS9GMTNhU01WWTBnZ3FoQkF2SjhqSWFDNkZ3eld0MkVNRHVBPT0.jpg?imageView&thumbnail=1680x0&quality=96&stripmeta=0&type=jpg)
@@ -63,12 +67,7 @@
 
 ##四、网站相关说明：
 -  4.1、网站使用的是ejs模板引擎, 我在后端使用的是数据渲染到前端模板上, 这样做虽然方便, 但却没有完成前后端分离, ,造成代码不易维护 ,在以后的工作中应多考虑使用 json 来处理前后端数据, 使前后端更好的分离
-```
 -  4.2、网站优化做得不够完善, 对nodejs不够深入了解, 有可能造成访问出错
-```
 -  4.3、网站功能做得不够完善, 图片上传未完成, 影响用户体验
-```
 -  4.4、服务端采用的是阿里云windows系统部署, 作者比较low,目前只会这个, 以后准备学一些计算机操作系统原理, 再来使用其他系统部署吧
-```
 -  4.5、上线当然是使用pm2, 解决nodejs断线, 快速重启
-```
