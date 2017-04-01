@@ -23,7 +23,6 @@
 
 **2、移动端显示：**
 ![移动端1.png](http://imglf0.nosdn.127.net/img/dXN2dkFWak5GQ0pHWUx2M1J1cS9GK2ZESkx6d2VoOWxqYzBHUDgxZVJ0cUdEeUhoaUg1MjJnPT0.png?imageView&thumbnail=1680x0&quality=96&stripmeta=0&type=jpg)
-
 ![移动端2.png](http://imglf.nosdn.127.net/img/dXN2dkFWak5GQ0pHWUx2M1J1cS9GNUJQaEFxUVBMendSOFhobG15MHNKbkNTc29zSHVCZEF3PT0.png?imageView&thumbnail=1680x0&quality=96&stripmeta=0&type=jpg)
 
 **3、后台管理系统：**
@@ -71,4 +70,5 @@
 ```
 -  4.4、服务端采用的是阿里云windows系统部署, 作者比较low,目前只会这个, 以后准备学一些计算机操作系统原理, 再来使用其他系统部署吧
 ```
--  4.4、上线当然是使用pm2, 解决nodejs断线, 快速重启
+-  4.5、上线当然是使用pm2, 解决nodejs断线, 快速重启
+```
