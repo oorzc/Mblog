@@ -42,12 +42,7 @@ exports.showIndex = function (req, res, next) {
             pageNum = pageCount;
         }
         res.render('blog/index', {
-            remen: remen,
-            reyi: reyi,
-            users: users,
-            articles: articles.slice((pageNum - 1) * pageSize, pageNum * pageSize),
-            pageNum: pageNum,
-            pageCount: pageCount,
+           
         });
     });
 };
