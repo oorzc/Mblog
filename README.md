@@ -7,14 +7,14 @@
 	在制作完我需要的页面之后,开始安装项目所需要的工具,怎么运行node,怎么配路由,怎么完成登录注册,怎么去保存数据,前后端结合是怎样进行的,全是一个个坑......每一个坑都耗费了自己大量时间,然而付出总会有收获,虽然作品还不太完美,也算是为自己以后的工作打下一个基础吧
 
 
-	相关工具：
-	- node v6.10.1
-	- mongodb3.2.6(64bit)
-	- Robomongo0.9.0-RC8
-	- webstrom11.0.1
+相关工具：
+- node v6.10.1
+- mongodb3.2.6(64bit)
+- Robomongo0.9.0-RC8
+- webstrom11.0.1
 
-	———————————————————————————————————————
-	先上效果图吧
+———————————————————————————————————————
+先上效果图吧
 
 **1、网站效果图：**
 ![网站首页.png](http://imglf2.nosdn.127.net/img/dXN2dkFWak5GQ0pHWUx2M1J1cS9GK3hHODU5MHhLQ28reFFFQ0tBMlFDOTh3bTVVZzFMcXlRPT0.jpg?imageView&thumbnail=1680x0&quality=96&stripmeta=0&type=jpg)
