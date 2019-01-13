@@ -8,12 +8,12 @@ var bodyParser = require('body-parser');
 var session = require('express-session');
 
 var app = express();
-var mongoose=require('mongoose');
+var mongoose = require('mongoose');
 var User = require('./models/user').User;
 
 var MongoStore = require('connect-mongo')(session);
 var dbUrl = 'mongodb://localhost:27017/heiye';
-mongoose.connect(dbUrl);
+mongoose.connect(dbUrl, { useMongoClient: true });
 
 app.use(session({
     secret: "heiye",
@@ -41,14 +41,14 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 app.use(express.static("./public"));
-app.use("/avatar",express.static("./public/avatar"));
+app.use("/avatar", express.static("./public/avatar"));
 app.use(favicon(__dirname + '/public//favicon.ico'));
-app.locals.moment = require('moment');//在模板中使用时间处理
+app.locals.moment = require('moment'); //在模板中使用时间处理
 
 //session
-app.use(function (req, res, next) {
-    var username=req.session.username;
-    User.findOne({username:username},function(err,user){
+app.use(function(req, res, next) {
+    var username = req.session.username;
+    User.findOne({ username: username }, function(err, user) {
         app.locals.user = user;
     });
     app.locals.username = req.session.username;
@@ -61,33 +61,34 @@ require('./routes/admin')(app);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  var err = new Error('Not Found');
-  err.status = 404;
-  next(err);
+    var err = new Error('Not Found');
+    err.status = 404;
+    next(err);
 });
 
 // error handlers
 // development error handler
 // will print stacktrace
 if (app.get('env') === 'development') {
-  app.use(function(err, req, res, next) {
-    res.status(err.status || 500);
-    res.render('blog/404', {
-      message: err.message,
-      error: err
+    app.use(function(err, req, res, next) {
+        res.status(err.status || 500);
+        console.log(err.message);
+        res.render('blog/404', {
+            message: err.message,
+            error: err
+        });
     });
-  });
 }
 
 // production error handler
 // no stacktraces leaked to user
 app.use(function(err, req, res, next) {
-  res.status(err.status || 500);
-  res.render('blog/404', {
-    message: err.message,
-    error: {}
-  });
+    console.log(err.message);
+    res.status(err.status || 500);
+    res.render('blog/404', {
+        message: err.message,
+        error: {}
+    });
 });
 
 module.exports = app;
-

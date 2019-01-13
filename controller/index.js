@@ -36,13 +36,25 @@ exports.showIndex = function (req, res, next) {
     ep.all('article_data_ok', 'remen_data_ok', 'user_data_ok', 'reyi_data_ok', function (articles, remen, users, reyi) {
         var pageNum = Math.abs(parseInt(req.query.page || 1, 9));
         var pageSize = 9;
-        var totalCount = articles.length;
+        var totalCount = articles ? articles.length : 0
         var pageCount = Math.ceil(totalCount / pageSize);
         if (pageNum > pageCount) {
             pageNum = pageCount;
         }
+
+        if (articles) {
+            articles = articles.slice((pageNum - 1) * pageSize, pageNum * pageSize)
+        } else {
+            articles = []
+        }
+
         res.render('blog/index', {
-           
+            users: users || [],
+            remen: remen || [],
+            reyi: reyi || [],
+            articles: articles,
+            pageNum: pageNum,
+            pageCount: pageCount,
         });
     });
 };
@@ -64,14 +76,14 @@ exports.showHome = function (req, res) {
             if (pageNum > pageCount) {
                 pageNum = pageCount;
             }
-            res.render("blog/home", {          
+            res.render("blog/home", {
                 author: author,
                 pageNum: pageNum,
                 pageCount: pageCount,
                 articles: articles.slice((pageNum - 1) * pageSize, pageNum * pageSize)
             });
-        }); 
-    }); 
+        });
+    });
 };
 
 //设置页面
@@ -384,9 +396,9 @@ exports.showAddComment = function (req, res, next) {
 //点赞
 exports.showZan = function (req, res) {
     var id = req.body.id;
-    Comment.findOne({_id: id}, function (err, comment) {    
+    Comment.findOne({_id: id}, function (err, comment) {
         var user = comment.user;
-        var like = comment.like;       
+        var like = comment.like;
         User.findOne({_id: user}, function (err, user) {
           User.update({_id: user.id}, {$set: {zan: user.zan + 1}}, function (err,b) {
               console.log(b)
@@ -395,21 +407,21 @@ exports.showZan = function (req, res) {
                   if (err) {
                     res.json({"status": "-1"});
                     return;
-                } else {            
+                } else {
                     res.json({"status": "1"});
                     return;
-                }     
-            }); 
-          }); 
+                }
+            });
+          });
       });
-    }); 
+    });
 };
 
 //点踩
 exports.showCai = function (req, res) {
-    var id = req.body.id; 
-    Comment.findOne({_id: id}, function (err, comment) { 
-        var dislike = comment.dislike;        
+    var id = req.body.id;
+    Comment.findOne({_id: id}, function (err, comment) {
+        var dislike = comment.dislike;
         Comment.update({_id:id}, {$set: {dislike: dislike + 1}}, function (err, doc) {
             console.log(doc)
             if (err) {
@@ -419,6 +431,6 @@ exports.showCai = function (req, res) {
                 res.json({"status": "1"});
                 return;
             }
-        });   
-    });        
+        });
+    });
 };
